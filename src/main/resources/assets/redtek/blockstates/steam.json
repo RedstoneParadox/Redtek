@@ -1,0 +1,15 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "redtek:steam"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "type": {
+      "0": {"model": "redtek:steam"},
+      "1": {"model": "redtek:steam"},
+      "2": {"model": "redtek:steam"}
+    }
+  }
+}

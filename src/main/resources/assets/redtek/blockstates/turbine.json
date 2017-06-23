@@ -1,0 +1,20 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "redtek:turbine"
+  },
+  "variants": {
+    "normal": [{}],
+    "inventory": [{}],
+    "rotating": {
+      "false": {"model": "redtek:turbine"},
+      "true": {"model": "redtek:rotating_turbine"}
+    },
+    "facing": {
+      "north": {},
+      "south": {"y": 180},
+      "west": {"y": 270},
+      "east": {"y": 90}
+    }
+  }
+}

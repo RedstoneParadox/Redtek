@@ -1,0 +1,10 @@
+# Blocks
+tile.redtek.heat_vent.name=Thermal Vent
+tile.redtek.molten_iron_block.name=Melted Iron Ore
+tile.redtek.molten_gold_block.name=Melted Gold Ore
+tile.redtek.turbine.name=Turbine
+
+#Items
+
+#Creative Tabs
+itemGroup.Machine Components (Redtek)=Machine Components (Redtek)

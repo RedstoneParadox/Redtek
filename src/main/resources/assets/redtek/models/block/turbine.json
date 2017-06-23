@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "redtek:blocks/vent_side",
+    "up": "redtek:blocks/turbine_side",
+    "down": "redtek:blocks/turbine_side",
+    "east": "redtek:blocks/turbine_side",
+    "west": "redtek:blocks/turbine_side",
+    "north": "redtek:blocks/turbine",
+    "south": "redtek:blocks/turbine_side"
+  }
+}

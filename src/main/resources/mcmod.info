@@ -1,0 +1,16 @@
+[
+{
+  "modid": "redtek",
+  "name": "Redtek",
+  "description": "Redtek is a mod focused on enhancing Redstone Technology with machines that use in world interaction. Minimal GUI, no magic blocks",
+  "version": "0.0.1",
+  "mcversion": "1.10.2-12.18.3.2185",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["RedstoneParadox (u/ZoCraft2)"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
