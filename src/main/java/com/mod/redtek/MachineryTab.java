@@ -1,6 +1,6 @@
 package com.mod.redtek;
 
-import com.mod.redtek.blocksold.RedtekBlocks;
+import com.mod.redtek.blocks.RedtekBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 

@@ -1,7 +1,7 @@
 package com.mod.redtek.blocksold.tileentities;
 
 import com.mod.redtek.Redtek;
-import com.mod.redtek.blocksold.RedtekBlocks;
+import com.mod.redtek.blocks.RedtekBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;

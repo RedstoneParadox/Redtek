@@ -1,6 +1,6 @@
 package com.mod.redtek.blocksold.tileentities.thermalblocks;
 
-import com.mod.redtek.blocksold.RedtekBlocks;
+import com.mod.redtek.blocks.RedtekBlocks;
 import com.mod.redtek.blocksold.tileentities.TileEntityThermalBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

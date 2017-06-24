@@ -1,6 +1,6 @@
 package com.mod.redtek.proxys;
 
-import com.mod.redtek.blocksold.RedtekBlocks;
+import com.mod.redtek.blocks.RedtekBlocks;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 
 /**

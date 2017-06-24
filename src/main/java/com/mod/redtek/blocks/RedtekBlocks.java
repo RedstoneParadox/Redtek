@@ -1,7 +1,9 @@
-package com.mod.redtek.blocksold;
+package com.mod.redtek.blocks;
 
+import com.mod.redtek.blocksold.MoltenGoldBlock;
+import com.mod.redtek.blocksold.MoltenIronBlock;
+import com.mod.redtek.blocksold.Steam;
 import com.mod.redtek.blocksold.tileentities.HeatVent;
-import com.mod.redtek.blocks.Turbine;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
