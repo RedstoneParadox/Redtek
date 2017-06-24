@@ -25,7 +25,6 @@ public class ThermalVent extends Block {
 
     public ThermalVent(boolean ignoreSimilarityIn) {
         super(Material.IRON);
-        setCreativeTab(Redtek.creativeTab);
         setHarvestLevel("pickaxe", 1);
         setHardness(10);
         setResistance(30);

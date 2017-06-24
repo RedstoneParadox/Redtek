@@ -5,7 +5,6 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -24,7 +23,6 @@ public class MoltenIronBlock extends Block{
 
     public MoltenIronBlock() {
         super(Material.ROCK);
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         setLightLevel(0.2f);
         setHarvestLevel("pickaxe", 1);
         setHardness(10);

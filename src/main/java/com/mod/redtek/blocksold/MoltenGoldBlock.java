@@ -24,7 +24,6 @@ public class MoltenGoldBlock extends Block {
 
     public MoltenGoldBlock() {
         super(Material.ROCK);
-        setCreativeTab(CreativeTabs.BUILDING_BLOCKS);
         setLightLevel(0.2F);
         setHarvestLevel("pickaxe", 2);
         setHardness(10);

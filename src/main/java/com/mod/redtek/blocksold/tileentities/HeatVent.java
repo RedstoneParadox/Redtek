@@ -28,7 +28,6 @@ public class HeatVent extends Block implements ITileEntityProvider{
 
     public HeatVent(boolean ignoreSimilarityIn) {
         super(Material.ROCK);
-        setCreativeTab(Redtek.creativeTab);
         setHarvestLevel("pickaxe", 1);
         setHardness(10);
         setResistance(30);
