@@ -37,6 +37,7 @@ public class Turbine extends Block implements ITileEntityProvider {
 
     public Turbine() {
         super(Material.IRON);
+        setCreativeTab(Redtek.creativeTab);
         setHarvestLevel("pickaxe", 1);
         setHardness(10);
         setResistance(30);

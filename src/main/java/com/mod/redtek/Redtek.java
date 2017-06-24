@@ -15,8 +15,8 @@ import org.apache.logging.log4j.Logger;
 @Mod(modid = Redtek.MODID, name = Redtek.MODNAME, version = Redtek.MODVERSION, useMetadata = true)
 public class Redtek {
 
-    public static final String MODID = "redstoneindustries";
-    public static final String MODNAME = "Redstone Industries";
+    public static final String MODID = "redtek";
+    public static final String MODNAME = "redtek";
     public static final String MODVERSION = "0.0.1";
     public static final MachineryTab creativeTab = new MachineryTab();
 
