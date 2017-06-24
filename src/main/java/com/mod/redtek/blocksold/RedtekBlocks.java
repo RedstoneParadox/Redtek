@@ -1,7 +1,7 @@
 package com.mod.redtek.blocksold;
 
 import com.mod.redtek.blocksold.tileentities.HeatVent;
-import com.mod.redtek.blocksold.tileentities.Turbine;
+import com.mod.redtek.blocks.Turbine;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

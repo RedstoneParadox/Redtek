@@ -1,6 +1,7 @@
-package com.mod.redtek.blocksold.tileentities;
+package com.mod.redtek.blocks;
 
 import com.mod.redtek.Redtek;
+import com.mod.redtek.blocksold.tileentities.TileEntityTurbine;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;

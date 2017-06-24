@@ -10,8 +10,8 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-import static com.mod.redtek.blocksold.tileentities.Turbine.FACING;
-import static com.mod.redtek.blocksold.tileentities.Turbine.ROTATING;
+import static com.mod.redtek.blocks.Turbine.FACING;
+import static com.mod.redtek.blocks.Turbine.ROTATING;
 
 /**
  * Created by RedstoneParadox on 4/21/2017.
