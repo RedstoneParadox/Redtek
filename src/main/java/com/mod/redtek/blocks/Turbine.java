@@ -1,7 +1,7 @@
 package com.mod.redtek.blocks;
 
 import com.mod.redtek.Redtek;
-import com.mod.redtek.tileentities.TileEntityTurbine;
+import com.mod.redtek.blocksold.tileentities.TileEntityTurbine;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -69,10 +69,11 @@ public class Turbine extends Block implements ITileEntityProvider {
         TileEntity ent = worldIn.getTileEntity(pos);
         if (ent instanceof TileEntityTurbine) {
             if (worldIn.isBlockPowered(pos)) {
-                ((TileEntityTurbine) ent).redstoneSwitch(true);
+                ((TileEntityTurbine) ent).generateEnergy(worldIn, pos);
             }
             else if (!worldIn.isBlockPowered(pos)) {
-                ((TileEntityTurbine) ent).redstoneSwitch(false);
+                ((TileEntityTurbine) ent).generate(0);
+                worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ROTATING, false));
             }
         }
         else {
