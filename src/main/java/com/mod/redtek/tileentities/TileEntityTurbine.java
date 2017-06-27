@@ -1,4 +1,4 @@
-package com.mod.redtek.blocksold.tileentities;
+package com.mod.redtek.tileentities;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -16,13 +17,14 @@ import static com.mod.redtek.blocks.Turbine.ROTATING;
 /**
  * Created by RedstoneParadox on 4/21/2017.
  */
-public class TileEntityTurbine extends TileEntity {
+public class TileEntityTurbine extends TileEntity implements ITickable {
 
     private static final ImmutableList<GeneratingBlocks> GENERATING_BLOCKS = ImmutableList.<GeneratingBlocks>builder()
             .add(Generators.values())
             .build();
 
     private int power =0;
+    private boolean isOn = false;
 
     //Power Level
     public boolean generate(int powerlevel) {
@@ -30,6 +32,13 @@ public class TileEntityTurbine extends TileEntity {
         power = powerlevel;
         markDirty();
         return tempvar != power;
+    }
+
+    public boolean redstoneSwitch(boolean isPowered) {
+        boolean tempvar = isOn;
+        isOn = isPowered;
+        markDirty();
+        return tempvar != isOn;
     }
 
     @Override
@@ -49,6 +58,17 @@ public class TileEntityTurbine extends TileEntity {
         super.writeToNBT(compound);
         compound.setInteger("PowerOutput", power);
         return compound;
+    }
+
+    @Override
+    public void update() {
+        if (isOn==true) {
+            System.out.println("Is true!");
+        }
+        else {
+            System.out.println("The cake is a lie!");
+        }
+
     }
 
     public void generateEnergy(World world, BlockPos pos) {
