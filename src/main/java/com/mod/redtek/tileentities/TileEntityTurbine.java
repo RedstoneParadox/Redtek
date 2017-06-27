@@ -62,13 +62,14 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
 
     @Override
     public void update() {
-        if (isOn==true) {
-            System.out.println("Is true!");
+        if(!world.isRemote) {
+            if (isOn==true) {
+                System.out.println("Is true!");
+            }
+            else {
+                System.out.println("The cake is a lie!");
+            }
         }
-        else {
-            System.out.println("The cake is a lie!");
-        }
-
     }
 
     public void generateEnergy(World world, BlockPos pos) {
