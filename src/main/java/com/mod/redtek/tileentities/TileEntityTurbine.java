@@ -10,6 +10,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.energy.IEnergyStorage;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import static com.mod.redtek.blocks.Turbine.FACING;
 import static com.mod.redtek.blocks.Turbine.ROTATING;
@@ -23,8 +27,11 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
             .add(Generators.values())
             .build();
 
-    private int power =0;
+    private int power = 0;
     private boolean isOn = false;
+    private boolean isRotating = false;
+
+    private final TurbineEnergyStorage energy = new TurbineEnergyStorage(256, 0, 256);
 
     //Power Level
     public boolean generate(int powerlevel) {
@@ -41,22 +48,37 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
         return tempvar != isOn;
     }
 
+    public boolean shouldRotate(boolean isTurning) {
+        boolean tempvar = isRotating;
+        isRotating = isTurning;
+        markDirty();
+        return tempvar != isRotating;
+    }
+
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
     }
 
+    @Mod.EventHandler
+    public AttachCapabilitiesEvent<TileEntity> addCapability() {
+        return new AttachCapabilitiesEvent<TileEntity>();
+    }
 
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         power = compound.getInteger("PowerOutput");
+        isOn = compound.getBoolean("IsOn");
+        isRotating = compound.getBoolean("IsRotating");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("PowerOutput", power);
+        compound.setBoolean("IsOn", isOn);
+        compound.setBoolean("IsRotating", isRotating);
         return compound;
     }
 
@@ -72,6 +94,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
         }
     }
 
+    @Deprecated
     public void generateEnergy(World world, BlockPos pos) {
         EnumFacing turbineDirection = EnumFacing.getHorizontal(getBlockMetadata());
         BlockPos neighbor = pos.offset(turbineDirection);
@@ -90,7 +113,6 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
             }
         }
     }
-
 
     private interface GeneratingBlocks {
         boolean matches(World world, BlockPos pos, IBlockState state);
