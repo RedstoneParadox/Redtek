@@ -10,10 +10,10 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.energy.CapabilityEnergy;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.energy.IEnergyStorage;
-import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import static com.mod.redtek.blocks.Turbine.FACING;
 import static com.mod.redtek.blocks.Turbine.ROTATING;
@@ -21,7 +21,7 @@ import static com.mod.redtek.blocks.Turbine.ROTATING;
 /**
  * Created by RedstoneParadox on 4/21/2017.
  */
-public class TileEntityTurbine extends TileEntity implements ITickable {
+public class TileEntityTurbine extends TileEntity implements ITickable, ICapabilityProvider {
 
     private static final ImmutableList<GeneratingBlocks> GENERATING_BLOCKS = ImmutableList.<GeneratingBlocks>builder()
             .add(Generators.values())
@@ -30,6 +30,9 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
     private int power = 0;
     private boolean isOn = false;
     private boolean isRotating = false;
+
+    @CapabilityInject(IEnergyStorage.class)
+    public static Capability<IEnergyStorage> ENERGY = null;
 
     private final TurbineEnergyStorage energy = new TurbineEnergyStorage(256, 0, 256);
 
@@ -58,11 +61,6 @@ public class TileEntityTurbine extends TileEntity implements ITickable {
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
-    }
-
-    @Mod.EventHandler
-    public AttachCapabilitiesEvent<TileEntity> addCapability() {
-        return new AttachCapabilitiesEvent<TileEntity>();
     }
 
     @Override
