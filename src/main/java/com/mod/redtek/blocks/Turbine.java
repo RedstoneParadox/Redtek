@@ -14,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -41,8 +40,6 @@ public class Turbine extends Block implements ITileEntityProvider {
         setResistance(30);
         setUnlocalizedName(Redtek.MODID + ".turbine");
         setRegistryName("turbine");
-        GameRegistry.register(this);
-        GameRegistry.register(new ItemBlock(this), getRegistryName());
         GameRegistry.registerTileEntity(TileEntityTurbine.class, Redtek.MODID + "_turbine");
     }
 
