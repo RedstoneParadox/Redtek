@@ -1,4 +1,4 @@
-package com.mod.redtek.blocksold.tileentities;
+package com.mod.redtek.tileentities;
 
 import com.google.common.collect.ImmutableList;
 import net.minecraft.block.Block;
@@ -7,22 +7,26 @@ import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-import static com.mod.redtek.blocksold.tileentities.Turbine.FACING;
-import static com.mod.redtek.blocksold.tileentities.Turbine.ROTATING;
+import static com.mod.redtek.blocks.Turbine.FACING;
+import static com.mod.redtek.blocks.Turbine.ROTATING;
 
 /**
  * Created by RedstoneParadox on 4/21/2017.
  */
-public class TileEntityTurbine extends TileEntity {
+public class TileEntityTurbine extends TileEntity implements ITickable, ICapabilityProvider {
 
     private static final ImmutableList<GeneratingBlocks> GENERATING_BLOCKS = ImmutableList.<GeneratingBlocks>builder()
             .add(Generators.values())
             .build();
 
-    private int power =0;
+    private int power = 0;
+    private boolean isOn = false;
+    private boolean isRotating = false;
 
     //Power Level
     public boolean generate(int powerlevel) {
@@ -32,25 +36,55 @@ public class TileEntityTurbine extends TileEntity {
         return tempvar != power;
     }
 
+    public boolean redstoneSwitch(boolean isPowered) {
+        boolean tempvar = isOn;
+        isOn = isPowered;
+        markDirty();
+        return tempvar != isOn;
+    }
+
+    public boolean shouldRotate(boolean isTurning) {
+        boolean tempvar = isRotating;
+        isRotating = isTurning;
+        markDirty();
+        return tempvar != isRotating;
+    }
+
     @Override
     public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newState) {
         return oldState.getBlock() != newState.getBlock();
     }
 
-
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
         power = compound.getInteger("PowerOutput");
+        isOn = compound.getBoolean("IsOn");
+        isRotating = compound.getBoolean("IsRotating");
     }
 
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
         compound.setInteger("PowerOutput", power);
+        compound.setBoolean("IsOn", isOn);
+        compound.setBoolean("IsRotating", isRotating);
         return compound;
     }
 
+    @Override
+    public void update() {
+        if(!world.isRemote) {
+            if (isOn==true) {
+                System.out.println("Is true!");
+            }
+            else {
+                System.out.println("The cake is a lie!");
+            }
+        }
+    }
+
+    @Deprecated
     public void generateEnergy(World world, BlockPos pos) {
         EnumFacing turbineDirection = EnumFacing.getHorizontal(getBlockMetadata());
         BlockPos neighbor = pos.offset(turbineDirection);
@@ -69,7 +103,6 @@ public class TileEntityTurbine extends TileEntity {
             }
         }
     }
-
 
     private interface GeneratingBlocks {
         boolean matches(World world, BlockPos pos, IBlockState state);

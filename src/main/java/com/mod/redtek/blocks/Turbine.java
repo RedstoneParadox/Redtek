@@ -1,6 +1,7 @@
-package com.mod.redtek.blocksold.tileentities;
+package com.mod.redtek.blocks;
 
 import com.mod.redtek.Redtek;
+import com.mod.redtek.tileentities.TileEntityTurbine;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockHorizontal;
@@ -13,7 +14,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -23,8 +23,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 /**
  * Created by RedstoneParadox on 4/21/2017.
@@ -36,13 +34,12 @@ public class Turbine extends Block implements ITileEntityProvider {
 
     public Turbine() {
         super(Material.IRON);
+        setCreativeTab(Redtek.creativeTab);
         setHarvestLevel("pickaxe", 1);
         setHardness(10);
         setResistance(30);
         setUnlocalizedName(Redtek.MODID + ".turbine");
         setRegistryName("turbine");
-        GameRegistry.register(this);
-        GameRegistry.register(new ItemBlock(this), getRegistryName());
         GameRegistry.registerTileEntity(TileEntityTurbine.class, Redtek.MODID + "_turbine");
     }
 
@@ -54,28 +51,23 @@ public class Turbine extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack item) {
         world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ROTATING, false), 2);
-        world.scheduleUpdate(pos, this, 0);
+        powerCheck(world, pos);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        worldIn.scheduleUpdate(pos, this, 0);
+        powerCheck(worldIn, pos);
     }
 
-    @Override
-    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+    public void powerCheck(World worldIn, BlockPos pos) {
         TileEntity ent = worldIn.getTileEntity(pos);
         if (ent instanceof TileEntityTurbine) {
             if (worldIn.isBlockPowered(pos)) {
-                ((TileEntityTurbine) ent).generateEnergy(worldIn, pos);
+                ((TileEntityTurbine) ent).redstoneSwitch(true);
             }
             else if (!worldIn.isBlockPowered(pos)) {
-                ((TileEntityTurbine) ent).generate(0);
-                worldIn.setBlockState(pos, worldIn.getBlockState(pos).withProperty(ROTATING, false));
+                ((TileEntityTurbine) ent).redstoneSwitch(false);
             }
-        }
-        else {
-            worldIn.scheduleUpdate(pos, this, 1);
         }
     }
 
