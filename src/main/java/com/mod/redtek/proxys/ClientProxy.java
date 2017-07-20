@@ -1,6 +1,5 @@
 package com.mod.redtek.proxys;
 
-import com.mod.redtek.Redtek;
 import com.mod.redtek.blocks.RedtekBlocks;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,7 +10,7 @@ import net.minecraftforge.fml.relauncher.Side;
 /**
  * Created by RedstoneParadox on 3/11/2017.
  */
-@Mod.EventBusSubscriber(value = Side.CLIENT, modid = Redtek.MODID)
+@Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
     @Override
     public void preInit(FMLPreInitializationEvent event) {

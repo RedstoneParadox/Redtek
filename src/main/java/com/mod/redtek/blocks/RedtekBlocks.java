@@ -24,6 +24,8 @@ public class RedtekBlocks {
     public static Turbine TURBINE;
     @GameRegistry.ObjectHolder("redtek:steam")
     public static Steam STEAM;
+    @GameRegistry.ObjectHolder("redtek:organic_generator")
+    public static OrganicGenerator ORGANIC_GENERATOR;
 
     public static void init() {
         HEAT_VENT = new HeatVent(true);
@@ -31,6 +33,7 @@ public class RedtekBlocks {
         MOLTEN_GOLD_BLOCK = new MoltenGoldBlock();
         TURBINE = new Turbine();
         STEAM = new Steam();
+        ORGANIC_GENERATOR = new OrganicGenerator();
     }
 
     @SideOnly(Side.CLIENT)
@@ -40,5 +43,6 @@ public class RedtekBlocks {
         MOLTEN_GOLD_BLOCK.initModel();
         TURBINE.initModel();
         STEAM.initModel();
+        ORGANIC_GENERATOR.initModel();
     }
 }

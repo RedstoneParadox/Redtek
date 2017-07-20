@@ -28,7 +28,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
     private boolean isOn = false;
     private boolean isRotating = false;
 
-    //Power Level
+    //Changes the amount of energy this block is outputting per tick.
     public boolean generate(int powerlevel) {
         int tempvar = power;
         power = powerlevel;
@@ -58,7 +58,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
-        power = compound.getInteger("PowerOutput");
+        power = compound.getInteger("PowerStored");
         isOn = compound.getBoolean("IsOn");
         isRotating = compound.getBoolean("IsRotating");
     }
@@ -66,7 +66,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
     @Override
     public NBTTagCompound writeToNBT(NBTTagCompound compound) {
         super.writeToNBT(compound);
-        compound.setInteger("PowerOutput", power);
+        compound.setInteger("PowerStored", power);
         compound.setBoolean("IsOn", isOn);
         compound.setBoolean("IsRotating", isRotating);
         return compound;
@@ -84,7 +84,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
         }
     }
 
-    @Deprecated
+    //Will be reimplemented later.
     public void generateEnergy(World world, BlockPos pos) {
         EnumFacing turbineDirection = EnumFacing.getHorizontal(getBlockMetadata());
         BlockPos neighbor = pos.offset(turbineDirection);
