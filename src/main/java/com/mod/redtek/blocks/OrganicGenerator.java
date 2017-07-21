@@ -76,11 +76,10 @@ public class OrganicGenerator extends Block implements ITileEntityProvider {
         return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(DUMMY_VALUE, Boolean.valueOf((meta & 8) > 0));
     }
 
-    @Deprecated
-    //This code is NOT to be deleted, I am still working on it.
-    public int getMetaFromStateOld(IBlockState state) {
+    @Override
+    public int getMetaFromState(IBlockState state) {
         int i = 0;
-        i = i | (state.getValue(FACING)).getHorizontalIndex();
+        i = i | (state.getValue(FACING)).getIndex();
 
         if ((state.getValue(DUMMY_VALUE)).booleanValue()) {
             i |= 8;
