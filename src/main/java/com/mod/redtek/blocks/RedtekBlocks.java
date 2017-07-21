@@ -43,6 +43,6 @@ public class RedtekBlocks {
         MOLTEN_GOLD_BLOCK.initModel();
         TURBINE.initModel();
         STEAM.initModel();
-        ORGANIC_GENERATOR.initModel();
+
     }
 }

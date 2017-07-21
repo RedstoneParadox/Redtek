@@ -32,7 +32,6 @@ public class OrganicGenerator extends Block implements ITileEntityProvider {
     //This will get used later.
     public static final PropertyBool DUMMY_VALUE = PropertyBool.create("dummy_value");
 
-
     public OrganicGenerator() {
         super(Material.IRON);
         setCreativeTab(Redtek.creativeTab);
@@ -74,11 +73,12 @@ public class OrganicGenerator extends Block implements ITileEntityProvider {
 
     @Override
     public IBlockState getStateFromMeta(int meta) {
-        return getDefaultState().withProperty(FACING, EnumFacing.getHorizontal(meta & 7)).withProperty(DUMMY_VALUE, Boolean.valueOf((meta & 8) > 0));
+        return getDefaultState().withProperty(FACING, EnumFacing.getFront(meta & 7)).withProperty(DUMMY_VALUE, Boolean.valueOf((meta & 8) > 0));
     }
 
-    @Override
-    public int getMetaFromState(IBlockState state) {
+    @Deprecated
+    //This code is NOT to be deleted, I am still working on it.
+    public int getMetaFromStateOld(IBlockState state) {
         int i = 0;
         i = i | (state.getValue(FACING)).getHorizontalIndex();
 

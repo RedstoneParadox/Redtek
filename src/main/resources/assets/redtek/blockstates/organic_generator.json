@@ -6,7 +6,7 @@
   "variants": {
     "normal": [{}],
     "inventory": [{}],
-    "rotating": {
+    "dummy_value": {
       "false": {"model": "redtek:turbine"},
       "true": {"model": "redtek:rotating_turbine"}
     },

@@ -78,9 +78,6 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
             if (isOn==true) {
                 System.out.println("Is true!");
             }
-            else {
-                System.out.println("The cake is a lie!");
-            }
         }
     }
 

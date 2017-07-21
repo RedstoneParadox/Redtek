@@ -51,15 +51,15 @@ public class Turbine extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack item) {
         world.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing().getOpposite()).withProperty(ROTATING, false), 2);
-        powerCheck(world, pos);
+        powerCheck(world, pos, state);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        powerCheck(worldIn, pos);
+        powerCheck(worldIn, pos, state);
     }
 
-    public void powerCheck(World worldIn, BlockPos pos) {
+    public void powerCheck(World worldIn, BlockPos pos, IBlockState state) {
         TileEntity ent = worldIn.getTileEntity(pos);
         if (ent instanceof TileEntityTurbine) {
             if (worldIn.isBlockPowered(pos)) {
@@ -67,6 +67,9 @@ public class Turbine extends Block implements ITileEntityProvider {
             }
             else if (!worldIn.isBlockPowered(pos)) {
                 ((TileEntityTurbine) ent).redstoneSwitch(false);
+                if (worldIn.getBlockState(pos).withProperty(ROTATING, true) == state) {
+                    worldIn.setBlockState(pos, state.withProperty(ROTATING, false));
+                }
             }
         }
     }
