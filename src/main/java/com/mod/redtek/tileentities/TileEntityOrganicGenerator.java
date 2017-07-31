@@ -67,10 +67,7 @@ public class TileEntityOrganicGenerator extends TileEntity implements ITickable 
     public void update() {
         if(!world.isRemote) {
             if (isOn==true) {
-                System.out.println("Is true!");
-            }
-            else {
-                System.out.println("The cake is a lie!");
+                generateEnergy(world, pos);
             }
         }
     }
@@ -89,7 +86,9 @@ public class TileEntityOrganicGenerator extends TileEntity implements ITickable 
             else if (i < 1) {
                 if (block.matches(world, neighbor, world.getBlockState(neighbor))) {
                     block.generate(world, pos, world.getBlockState(neighbor), turbineDirection,this);
-                    world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumFacing.getHorizontal(getBlockMetadata())).withProperty(DUMMY_VALUE, true));
+                    if(1==1) {
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumFacing.getHorizontal(getBlockMetadata())).withProperty(DUMMY_VALUE, true));
+                    }
                 }
                 i++;
             }

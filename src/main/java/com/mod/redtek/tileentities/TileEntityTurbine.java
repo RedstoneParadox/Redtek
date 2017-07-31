@@ -76,7 +76,7 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
     public void update() {
         if(!world.isRemote) {
             if (isOn==true) {
-                System.out.println("Is true!");
+                generateEnergy(world, pos);
             }
         }
     }
@@ -94,7 +94,9 @@ public class TileEntityTurbine extends TileEntity implements ITickable, ICapabil
             else if (i < 1) {
                 if (block.matches(world, neighbor, world.getBlockState(neighbor))) {
                     block.generate(world, pos, world.getBlockState(neighbor), turbineDirection,this);
-                    world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumFacing.getHorizontal(getBlockMetadata())).withProperty(ROTATING, true));
+                    if (world.getBlockState(pos) == world.getBlockState(pos).withProperty(ROTATING, false)) {
+                        world.setBlockState(pos, world.getBlockState(pos).withProperty(FACING, EnumFacing.getHorizontal(getBlockMetadata())).withProperty(ROTATING, true));
+                    }
                 }
                 i++;
             }

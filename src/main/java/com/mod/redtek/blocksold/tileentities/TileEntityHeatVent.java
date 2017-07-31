@@ -1,7 +1,7 @@
 package com.mod.redtek.blocksold.tileentities;
 
 import com.google.common.collect.ImmutableList;
-import com.mod.redtek.blocksold.tileentities.thermalblocks.*;
+import com.mod.redtek.interfaces.thermalblocks.*;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;

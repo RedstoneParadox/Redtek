@@ -3,6 +3,7 @@ tile.redtek.heat_vent.name=Thermal Vent
 tile.redtek.molten_iron_block.name=Melted Iron Ore
 tile.redtek.molten_gold_block.name=Melted Gold Ore
 tile.redtek.turbine.name=Turbine
+tile.redtek.organic_generator.name=Organic Generator
 
 #Items
 

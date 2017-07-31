@@ -1,4 +1,4 @@
-package com.mod.redtek.blocksold.tileentities.thermalblocks;
+package com.mod.redtek.interfaces.thermalblocks;
 
 /**
  * Created by RedstoneParadox on 4/11/2017.

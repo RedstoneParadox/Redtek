@@ -1,4 +1,4 @@
-package com.mod.redtek.blocksold.tileentities.thermalblocks;
+package com.mod.redtek.interfaces.thermalblocks;
 
 import com.mod.redtek.blocks.RedtekBlocks;
 import com.mod.redtek.blocksold.tileentities.TileEntityThermalBase;

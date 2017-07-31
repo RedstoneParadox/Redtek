@@ -2,6 +2,7 @@ package com.mod.redtek.blocks;
 
 import com.mod.redtek.Redtek;
 import com.mod.redtek.tileentities.TileEntityOrganicGenerator;
+import com.mod.redtek.tileentities.TileEntityTurbine;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
@@ -51,22 +52,25 @@ public class OrganicGenerator extends Block implements ITileEntityProvider {
     @Override
     public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack item) {
         world.setBlockState(pos, state.withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)), 2);
-        powerCheck(world, pos);
+        powerCheck(world, pos, state);
     }
 
     @Override
     public void neighborChanged(IBlockState state, World worldIn, BlockPos pos, Block blockIn, BlockPos fromPos) {
-        powerCheck(worldIn, pos);
+        powerCheck(worldIn, pos, state);
     }
 
-    public void powerCheck(World worldIn, BlockPos pos) {
+    public void powerCheck(World worldIn, BlockPos pos, IBlockState state) {
         TileEntity ent = worldIn.getTileEntity(pos);
-        if (ent instanceof TileEntityOrganicGenerator) {
+        if (ent instanceof TileEntityTurbine) {
             if (worldIn.isBlockPowered(pos)) {
-                ((TileEntityOrganicGenerator) ent).redstoneSwitch(true);
+                ((TileEntityTurbine) ent).redstoneSwitch(true);
             }
             else if (!worldIn.isBlockPowered(pos)) {
-                ((TileEntityOrganicGenerator) ent).redstoneSwitch(false);
+                ((TileEntityTurbine) ent).redstoneSwitch(false);
+                if (worldIn.getBlockState(pos).withProperty(DUMMY_VALUE, true) == state) {
+                    worldIn.setBlockState(pos, state.withProperty(DUMMY_VALUE, false));
+                }
             }
         }
     }
