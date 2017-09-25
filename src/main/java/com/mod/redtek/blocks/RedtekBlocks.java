@@ -26,6 +26,10 @@ public class RedtekBlocks {
     public static Steam STEAM;
     @GameRegistry.ObjectHolder("redtek:organic_generator")
     public static OrganicGenerator ORGANIC_GENERATOR;
+    @GameRegistry.ObjectHolder("redtek:floodgate")
+    public static FloodGate FLOODGATE;
+    @GameRegistry.ObjectHolder("redtek:hot_air")
+    public static HotAir HOT_AIR;
 
     public static void init() {
         HEAT_VENT = new HeatVent(true);
@@ -34,6 +38,8 @@ public class RedtekBlocks {
         TURBINE = new Turbine();
         STEAM = new Steam();
         ORGANIC_GENERATOR = new OrganicGenerator();
+        FLOODGATE = new FloodGate();
+        HOT_AIR = new HotAir();
     }
 
     @SideOnly(Side.CLIENT)
@@ -44,5 +50,7 @@ public class RedtekBlocks {
         TURBINE.initModel();
         STEAM.initModel();
         ORGANIC_GENERATOR.initModel();
+        FLOODGATE.initModel();
+        HOT_AIR.initModel();
     }
 }

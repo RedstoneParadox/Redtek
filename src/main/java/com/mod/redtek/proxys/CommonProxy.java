@@ -1,9 +1,7 @@
 package com.mod.redtek.proxys;
 
 import com.mod.redtek.Redtek;
-import com.mod.redtek.blocks.OrganicGenerator;
-import com.mod.redtek.blocks.RedtekBlocks;
-import com.mod.redtek.blocks.Turbine;
+import com.mod.redtek.blocks.*;
 import com.mod.redtek.blocksold.MoltenGoldBlock;
 import com.mod.redtek.blocksold.MoltenIronBlock;
 import com.mod.redtek.blocksold.Steam;
@@ -43,6 +41,8 @@ public class CommonProxy {
         event.getRegistry().register(new Turbine());
         event.getRegistry().register(new Steam());
         event.getRegistry().register(new OrganicGenerator());
+        event.getRegistry().register(new FloodGate());
+        event.getRegistry().register(new HotAir());
     }
 
     @SubscribeEvent
@@ -51,8 +51,8 @@ public class CommonProxy {
         event.getRegistry().register(new ItemBlock(RedtekBlocks.MOLTEN_IRON_BLOCK).setRegistryName(RedtekBlocks.MOLTEN_IRON_BLOCK.getRegistryName()));
         event.getRegistry().register(new ItemBlock(RedtekBlocks.MOLTEN_GOLD_BLOCK).setRegistryName(RedtekBlocks.MOLTEN_GOLD_BLOCK.getRegistryName()));
         event.getRegistry().register(new ItemBlock(RedtekBlocks.TURBINE).setRegistryName(RedtekBlocks.TURBINE.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.STEAM).setRegistryName(RedtekBlocks.STEAM.getRegistryName()));
         event.getRegistry().register(new ItemBlock(RedtekBlocks.ORGANIC_GENERATOR).setRegistryName(RedtekBlocks.ORGANIC_GENERATOR.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(RedtekBlocks.FLOODGATE).setRegistryName(RedtekBlocks.FLOODGATE.getRegistryName()));
     }
 }
 
