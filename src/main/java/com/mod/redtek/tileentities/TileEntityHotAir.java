@@ -1,5 +1,6 @@
 package com.mod.redtek.tileentities;
 
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 
 /**
@@ -14,12 +15,21 @@ public class TileEntityHotAir extends TileEntity {
     }
 
     public TileEntityHotAir(int temp) {
-        this.temperature = temp;
+        temperature = temp;
+        markDirty();
     }
 
     @Override
-    public void onLoad(){
-        System.out.println("hi");
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        temperature = compound.getInteger("Temperature");
+    }
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        super.writeToNBT(compound);
+        compound.setInteger("Temperature", temperature);
+        return compound;
     }
 
 }
