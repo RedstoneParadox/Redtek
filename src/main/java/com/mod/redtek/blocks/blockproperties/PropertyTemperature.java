@@ -4,6 +4,7 @@ import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Sets;
 import net.minecraft.block.properties.PropertyHelper;
+import net.minecraft.block.properties.PropertyInteger;
 import net.minecraftforge.common.property.IUnlistedProperty;
 
 import java.util.Collection;
@@ -38,25 +39,27 @@ public class PropertyTemperature extends PropertyHelper<Integer> implements IUnl
     }
 
     @Override
-    public String getName() {
+    public String getName(Integer value) {
         return this.propName;
     }
 
     @Override
     public Collection<Integer> getAllowedValues() {
-        return null;
+        return this.allowedValues;
     }
 
     @Override
     public Optional<Integer> parseValue(String value) {
-        return null;
+        try
+        {
+            Integer integer = Integer.valueOf(value);
+            return this.allowedValues.contains(integer) ? Optional.of(integer) : Optional.absent();
+        }
+        catch (NumberFormatException var3)
+        {
+            return Optional.<Integer>absent();
+        }
     }
-
-    @Override
-    public String getName(Integer value) {
-        return null;
-    }
-
 
     @Override
     public boolean isValid(PropertyTemperature value) {
@@ -82,4 +85,27 @@ public class PropertyTemperature extends PropertyHelper<Integer> implements IUnl
     public static PropertyTemperature create(String name, int min, int max) {
         return new PropertyTemperature(name, min, max);
     }
+
+    public boolean equals(Object p_equals_1_)
+    {
+        if (this == p_equals_1_)
+        {
+            return true;
+        }
+        else if (p_equals_1_ instanceof PropertyInteger && super.equals(p_equals_1_))
+        {
+            PropertyTemperature propertyinteger = (PropertyTemperature)p_equals_1_;
+            return this.allowedValues.equals(propertyinteger.allowedValues);
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public int hashCode()
+    {
+        return 31 * super.hashCode() + this.allowedValues.hashCode();
+    }
+
 }
