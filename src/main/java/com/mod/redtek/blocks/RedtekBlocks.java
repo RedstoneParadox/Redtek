@@ -30,6 +30,8 @@ public class RedtekBlocks {
     public static FloodGate FLOODGATE;
     @GameRegistry.ObjectHolder("redtek:hot_air")
     public static HotAir HOT_AIR;
+    @GameRegistry.ObjectHolder("redtek:heat_test_block")
+    public static HeatTestBlock HEAT_TEST_BLOCK;
 
     public static void init() {
         HEAT_VENT = new HeatVent(true);
@@ -40,6 +42,7 @@ public class RedtekBlocks {
         ORGANIC_GENERATOR = new OrganicGenerator();
         FLOODGATE = new FloodGate();
         HOT_AIR = new HotAir();
+        HEAT_TEST_BLOCK = new HeatTestBlock();
     }
 
     @SideOnly(Side.CLIENT)
@@ -52,5 +55,6 @@ public class RedtekBlocks {
         ORGANIC_GENERATOR.initModel();
         FLOODGATE.initModel();
         HOT_AIR.initModel();
+        HEAT_TEST_BLOCK.initModel();
     }
 }

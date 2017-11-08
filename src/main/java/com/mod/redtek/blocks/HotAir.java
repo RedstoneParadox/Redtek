@@ -1,21 +1,18 @@
 package com.mod.redtek.blocks;
 
 import com.mod.redtek.Redtek;
-import com.mod.redtek.blocks.blockproperties.PropertyTemperature;
 import com.mod.redtek.tileentities.TileEntityHotAir;
 import jline.internal.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -25,10 +22,9 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 /**
  * Created by RedstoneParadox on 9/23/2017.
  */
-public class HotAir extends Block implements ITileEntityProvider{
+public class HotAir extends Block implements ITileEntityProvider {
 
-    public static final PropertyBool HEAT_CHECK = PropertyBool.create("heat check");
-    public static final PropertyTemperature TEMPERATURE = PropertyTemperature.create("temperature", 0, 4096);
+    public static final PropertyBool HEAT_CHECK = PropertyBool.create("heat_check");
 
     public HotAir() {
         super(Material.AIR);
@@ -43,8 +39,9 @@ public class HotAir extends Block implements ITileEntityProvider{
     }
 
     @Override
-    public void onBlockPlacedBy(World world, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack item) {
-        world.setBlockState(pos, state.withProperty(HEAT_CHECK, true), 2);
+    public boolean canCollideCheck(IBlockState state, boolean hitIfLiquid)
+    {
+        return false;
     }
 
     @Override
@@ -55,7 +52,15 @@ public class HotAir extends Block implements ITileEntityProvider{
 
     @Override
     public int getMetaFromState(IBlockState state) {
-        return 0;
+        if(state == getDefaultState().withProperty(HEAT_CHECK, true)) {
+            return 1;
+        }
+        else if (state == getDefaultState().withProperty(HEAT_CHECK, false)) {
+            return 0;
+        }
+        else {
+            throw new IllegalArgumentException(state + "does not exist for" + getUnlocalizedName());
+        }
     }
 
     @Override
@@ -71,13 +76,19 @@ public class HotAir extends Block implements ITileEntityProvider{
         }
     }
 
+    private int getActualMeta() {
+        return 0;
+    }
+
+    @Override
+    protected BlockStateContainer createBlockState() { return new BlockStateContainer(this, HEAT_CHECK);}
+
     @Override
     @Nullable
     public TileEntity createNewTileEntity(World worldIn, int meta) {
         if (getDefaultState().withProperty(HEAT_CHECK, true) == getBlockState()) {
-            return new TileEntityHotAir(1);
-        }
-        else {
+            return new TileEntityHotAir(getActualMeta());
+        } else {
             return new TileEntityHotAir();
         }
     }

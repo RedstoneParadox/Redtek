@@ -1,6 +1,7 @@
 package com.mod.redtek.proxys;
 
 import com.mod.redtek.Redtek;
+import com.mod.redtek.eventhandlers.RedtekEventHandler;
 import com.mod.redtek.blocks.*;
 import com.mod.redtek.blocksold.MoltenGoldBlock;
 import com.mod.redtek.blocksold.MoltenIronBlock;
@@ -9,6 +10,7 @@ import com.mod.redtek.blocksold.tileentities.HeatVent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
@@ -22,7 +24,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber(modid = Redtek.MODID)
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-
+        MinecraftForge.EVENT_BUS.register(new RedtekEventHandler());
     }
 
     public void init(FMLInitializationEvent event) {
@@ -43,6 +45,7 @@ public class CommonProxy {
         event.getRegistry().register(new OrganicGenerator());
         event.getRegistry().register(new FloodGate());
         event.getRegistry().register(new HotAir());
+        event.getRegistry().register(new HeatTestBlock());
     }
 
     @SubscribeEvent

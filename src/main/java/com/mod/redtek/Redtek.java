@@ -12,7 +12,7 @@ import org.apache.logging.log4j.Logger;
  * Created by RedstoneParadox on 3/11/2017.
  */
 
-@Mod(modid = Redtek.MODID, name = Redtek.MODNAME, version = Redtek.VERSION, dependencies = "required-after:forge@[14.21.1.2387,)", useMetadata = true)
+@Mod(modid = Redtek.MODID, name = Redtek.MODNAME, version = Redtek.VERSION, dependencies = "required-after:forge@[14.23.0.2491,)", useMetadata = true)
 public class Redtek {
 
     public static final String MODID = "redtek";
