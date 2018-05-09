@@ -1,6 +1,6 @@
 package com.mod.redtek;
 
-import com.mod.redtek.blocks.RedtekBlocks;
+import com.mod.redtek.old.blocks.RedtekBlocks;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
@@ -12,7 +12,7 @@ import static net.minecraft.item.Item.getItemFromBlock;
 public class MachineryTab extends CreativeTabs{
 
     public MachineryTab() {
-        super("Machine Components (Redtek)");
+        super("Machines (Redtek)");
     }
 
     @Override

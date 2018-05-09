@@ -2,11 +2,8 @@ package com.mod.redtek.proxys;
 
 import com.mod.redtek.Redtek;
 import com.mod.redtek.eventhandlers.RedtekEventHandler;
-import com.mod.redtek.blocks.*;
-import com.mod.redtek.blocksold.MoltenGoldBlock;
-import com.mod.redtek.blocksold.MoltenIronBlock;
-import com.mod.redtek.blocksold.Steam;
-import com.mod.redtek.blocksold.tileentities.HeatVent;
+import com.mod.redtek.old.blocks.RedtekBlocks;
+import com.mod.redtek.old.tileentities.HeatVent;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -38,24 +35,11 @@ public class CommonProxy {
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event) {
         event.getRegistry().register(new HeatVent(true));
-        event.getRegistry().register(new MoltenIronBlock());
-        event.getRegistry().register(new MoltenGoldBlock());
-        event.getRegistry().register(new Turbine());
-        event.getRegistry().register(new Steam());
-        event.getRegistry().register(new OrganicGenerator());
-        event.getRegistry().register(new FloodGate());
-        event.getRegistry().register(new HotAir());
-        event.getRegistry().register(new HeatTestBlock());
     }
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new ItemBlock(RedtekBlocks.HEAT_VENT).setRegistryName(RedtekBlocks.HEAT_VENT.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.MOLTEN_IRON_BLOCK).setRegistryName(RedtekBlocks.MOLTEN_IRON_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.MOLTEN_GOLD_BLOCK).setRegistryName(RedtekBlocks.MOLTEN_GOLD_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.TURBINE).setRegistryName(RedtekBlocks.TURBINE.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.ORGANIC_GENERATOR).setRegistryName(RedtekBlocks.ORGANIC_GENERATOR.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(RedtekBlocks.FLOODGATE).setRegistryName(RedtekBlocks.FLOODGATE.getRegistryName()));
     }
 }
 
